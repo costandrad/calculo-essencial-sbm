@@ -1,3 +1,25 @@
+
+#import "@preview/cetz:0.4.2"
+#import "@preview/cetz-plot:0.1.3"
+#import "@preview/lilaq:0.5.0" as lq
+
+#let darkblue = rgb("#1e3a64")
+#let lightblue = rgb("#5bc0de")
+#let sbm-blue = rgb("#006496")
+#let sbm-green = rgb("#35a097")
+
+#let solution(content) = [
+  #rect(radius: 6pt, stroke: sbm-blue+1.5pt, inset: 8pt)[
+    #text(fill: sbm-blue, weight: "bold")[Solução:]
+  ]
+  
+  #content
+
+  #align(right)[
+    #rect(width: 10pt, height: 10pt, fill: sbm-blue)
+  ]
+]
+
 #let conf(
   author: [],
   curso: [],
@@ -13,10 +35,7 @@
   doc
 ) = {
 
-  let darkblue = rgb("#1e3a64")
-  let lighblue = rgb("#5bc0de")
-  let sbm-blue = rgb("#006496")
-  let sbm-green = rgb("#35a097")
+
 
   set page(
     paper: "a4",
@@ -51,11 +70,10 @@
   )
 
   set par(
-    first-line-indent: (amount: 1.25cm, all: true),
+    //first-line-indent: (amount: 1.25cm, all: true),
     justify: true,
     leading: 1.0em
   )
-
 
   place(
     top+center,
@@ -76,7 +94,7 @@
           ],
           align(horizon+center)[
             #set text(fill: darkblue, weight: "bold", size: 10pt)
-            #rect(radius: 8pt, inset: 10pt, stroke: lighblue, fill: color.mix(lighblue, (white, 70%)))[
+            #rect(radius: 8pt, inset: 10pt, stroke: lightblue, fill: color.mix(lightblue, (white, 70%)))[
               MÓDULO #modulo.numero \
               #modulo.tema
             ]
@@ -86,7 +104,7 @@
     }
   )
 
-  rect(width: 100%, radius: 8pt, inset: 10pt, stroke: lighblue, fill: color.mix(lighblue, (white, 70%)))[
+  rect(width: 100%, radius: 8pt, inset: 10pt, stroke: lightblue, fill: color.mix(lightblue, (white, 70%)))[
     #set text(weight: "bold", fill: darkblue)
     #align(center)[
       Lista de Exercícios - Aula #aula.numero

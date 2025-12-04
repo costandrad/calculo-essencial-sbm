@@ -15,6 +15,7 @@
   
   #content
 
+  
   #align(right)[
     #rect(width: 10pt, height: 10pt, fill: sbm-blue)
   ]
