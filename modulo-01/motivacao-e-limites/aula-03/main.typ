@@ -77,6 +77,41 @@
       $
     ])
 
++ *Fatoração de equações do segundo grau.* Calcule os limites abaixo.
+  #set enum(numbering: "(a)")
+  + $display(lim_(x arrow 2) (x^2 - 5x + 6)/(x - 2))$
+    #solution([
+      Ao substituir $x = 2$ na expressão dada, obtemos uma indeterminação de tipo $0\/0$. Para eliminá-la, vamos fatorar o polinômio do segundo grau no numerador, aplicando a fórmula de Báskara:
+      $
+        x^2 - 5x + 6 = 0 &arrow.double x = (-(-5) plus.minus sqrt((-5)^2 - 4 dot 1 dot 6))/(2) arrow.double x = (5 plus.minus sqrt(25 - 24))/2\
+        &arrow.double x = (5 plus.minus sqrt(1))/2 arrow.double x = (5 plus.minus 1)/2 arrow.double 
+        cases(
+          display(x_1 = (5 - 1)/2 = 4/2 = 2),
+          display(x_2 = (5 + 1)/2 = 6/2 = 3)
+        )
+      $
+      A forma fatorada do numerador é: $x^2 - 5x + 6 = (x - 2)(x - 3)$. Logo, o limite da expressão dada é
+      $
+        lim_(x arrow 2) (x^2 - 5x + 6)/(x - 2) &= lim_(x arrow 2) (cancel((x - 2))(x - 3))/cancel(x - 2) = lim_(x arrow 2) (x - 3) = 2 - 3 = -1
+      $
+    ])
+
+  + $display(lim_(x arrow 1) (x^2 - 3x + 2)/(x^2 - 1))$
+    #solution([
+      Ao substituir $x = 1$ na expressão dada, obtemos uma indeterminação de tipo $0\/0$. Para eliminá-la, vamos fatorar o polinômio do segundo grau no numerador, aplicando a fórmula de Báskara:
+      $
+        x^2 - 3x + 2 = 0 &arrow.double x = (-(-3) plus.minus sqrt((-3)^2 - 4 dot 1 dot 2))/2 arrow.double x = (3 plus.minus sqrt(9 - 8))/2\
+        &arrow.double x = (3 plus.minus 1)/2 arrow.double
+        cases(
+          display(x_1 = (3 - 1)/2 = 2/2 = 1),
+          display(x_2 = (3 + 1)/2 = 4/2 = 2)
+        )
+      $
+      A forma fatorada do numerador é: $ x^2 - 3x + 2 = (x - 1)(x - 2). $ Quanto ao denominador, podemos fatorá-lo usando diferença de quadrados: $ x^2 - 1 = (x-1)(x+1). $ Logo, o limite da expressão dada é
+      $
+        lim_(x arrow 1) (x^2 - 3x + 2)/(x^2 - 1) &= lim_(x arrow 1) (cancel((x - 1))(x - 2))/(cancel((x - 1))(x + 1)) = lim_(x arrow 1) (x - 2)/(x + 1) = (1 - 2)/(1 + 1) = - 1/2
+      $
+    ])
 
 
 
