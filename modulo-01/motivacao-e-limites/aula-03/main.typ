@@ -50,6 +50,34 @@
       $
     ])
 
++ *Diferença de cubos e racionalização com raiz cúbica.* Calcule os limites abaixo.
+  #set enum(numbering: "(a)")
+  + $display(lim_(x arrow 2) (x^3 - 8)/(x - 2))$
+    #solution([
+      $
+        lim_(x arrow 2) (x^3 - 8)/(x - 2) &= lim_(x arrow 2) (x^3  - 2^3)/(x - 2) = lim_(x arrow 2) (cancel((x - 2)) (x^2 + 2x + 2^2))/cancel(x - 2)\
+        &= lim_(x arrow 2) (x^2 + 2x + 4) = 2^2 + 2 dot 2 + 4 = 12
+      $
+    ])
+
+  + $display(lim_(x arrow 8) (root(3, x) - 2)/(x - 8))$
+    #solution([
+      $
+        lim_(x arrow 8) (root(3, x) - 2)/(x - 8) &= lim_(x arrow 8) (root(3, x) - 2)/((root(3, x))^3 - 2^3) =  lim_(x arrow 8) cancel(root(3, x) - 2)/(cancel((root(3, x) - 2)) (root(3, x^2) + 2 root(3, x) + 2^2))\
+        &= lim_(x arrow 8) 1/(root(3, x^2) + 2 root(3, x) + 4) = 1 / (root(3, 8^2) + 2 root(3, 8) + 4)\
+        &= 1 / ((root(3, 8))^2 + 2 root(3, 8) + 4) = 1 / (2^2 + 2 dot 2 + 4) = 1/12
+      $
+    ])
+
+  + $display(lim_(x arrow -1) (x^3 + 1)/(x + 1))$
+    #solution([
+      $
+        lim_(x arrow -1) (x^3 + 1)/(x + 1) &= lim_(x arrow -1) (x^3 - (-1))/(x - (-1)) = lim_(x arrow -1) (cancel((x - (-1))) (x^2 + x dot (-1) + (-1)^2))/cancel(x - (-1))\
+        &= lim_(x arrow -1) (x^2 - x + 1) = (-1)^2 - (-1) + 1 = 3
+      $
+    ])
+
+
 
 
 + *Definição de limite.* Defina o que significa $lim_(x arrow a) f(x) = L$.
