@@ -9,6 +9,8 @@
 #let sbm-green = rgb("#35a097")
 
 
+
+
 // Aplica o método de Briot–Ruffini (divisão sintética)
 // dividend: coeficientes do polinômio (ordem decrescente)
 // r: raiz candidata
