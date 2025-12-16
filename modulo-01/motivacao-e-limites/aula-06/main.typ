@@ -236,8 +236,8 @@
             legend: (4.6, 1.2), 
             legend-style: (stroke: 0.2pt+sbm-blue, fill: sbm-blue.lighten(95%)), 
             {
-              plot.add(domain: (-2*calc.pi, 2*calc.pi), x => 1, style: (stroke: (dash: "dotted", paint: sbm-green, thickness: 1.2pt)), label: [#text(size: 10pt)[$g(x) = 1$]])
-              plot.add(domain: (-2*calc.pi, 2*calc.pi), x => calc.cos(x), style: (stroke: (dash: "dashed", paint: sbm-green)), label: [#text(size: 10pt)[$h(x) = cos x$]])
+              plot.add(domain: (-2*calc.pi, 2*calc.pi), x => calc.cos(x), style: (stroke: (dash: "dashed", paint: sbm-green)), label: [#text(size: 10pt)[$g(x) = cos x$]])
+              plot.add(domain: (-2*calc.pi, 2*calc.pi), x => 1, style: (stroke: (dash: "dotted", paint: sbm-green, thickness: 1.2pt)), label: [#text(size: 10pt)[$h(x) = 1$]])
               plot.add(domain: (-2*calc.pi, 2*calc.pi), x => calc.sin(x)/x, style: (stroke: (paint: sbm-blue, thickness: 1pt)), label: [#text(size: 10pt)[$f(x) = "sen" x\/x$]])
 
               plot.annotate({
