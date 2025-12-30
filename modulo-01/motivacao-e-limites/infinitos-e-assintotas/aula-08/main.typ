@@ -182,6 +182,8 @@
       )
     ])
 
+    #v(3cm)
+
   + $display(lim_(x -> 1) (x^2 - 1)/(x - 1)^3) $
     #solution([
       #grid(
@@ -272,6 +274,7 @@
         ]
       )
     ])
+    #v(4cm)
 
   + $display(lim_(x -> (pi/2)^-) tan x) $
     #solution([
@@ -317,3 +320,207 @@
       )
 
     ])
+
++ Determine todas as assíntotas verticais das funções abaixo:
+  #set enum(numbering: "(a)")
+  + $f(x) = display((x+1)/(x^2 - 4))$
+    #solution([
+
+      - Pontos de indeterminação: os candidatos são os valores de $x$ para os quais o denominador igual a zero:
+      $
+        x^2 - 4 = 0 => x^2 = 4 => x = plus.minus 2
+      $
+      - Para cada candidato, verificar os limites laterais com atenção à análise de sinais:
+        - $x -> -2^-$
+        $
+          lim_(x -> -2^-) (x+1)/(x^2 - 4) = overbrace(display(lim_(x -> -2^-) x + 1), -1)/underbrace(display(lim_(x -> -2^-) (x^2 - 4)), 0^+) = - infinity
+        $
+
+        - $x -> -2^+$
+        $
+          lim_(x -> -2^+) (x+1)/(x^2 - 4) = overbrace(display(lim_(x -> -2^+) x + 1), -1)/underbrace(display(lim_(x -> -2^+) (x^2 - 4)), 0^-) = + infinity
+        $
+
+        - $x -> +2^-$
+        $
+          lim_(x -> +2^-) (x+1)/(x^2 - 4) = overbrace(display(lim_(x -> +2^-) x + 1), +3)/underbrace(display(lim_(x -> +2^-) (x^2 - 4)), 0^-) = - infinity
+        $
+
+        - $x -> +2^+$
+        $
+          lim_(x -> +2^+) (x+1)/(x^2 - 4) = overbrace(display(lim_(x -> +2^+) x + 1), +3)/underbrace(display(lim_(x -> +2^+) (x^2 - 4)), 0^+) = + infinity
+        $
+
+        Portanto, as retas $x = -2$ e $x = 2$ são assíntotas verticais da função.
+
+        #figure()[
+          #cetz.canvas({
+            import cetz.draw: *
+            import cetz-plot: *
+
+            let f(x) = (x + 1)/(calc.pow(x, 2) - 4)
+            plot.plot(..opts, 
+            x-tick-step: 2, y-tick-step: none,
+            x-grid: none, 
+            y-min: -2, y-max: 2, 
+            legend: (-2, 5.25),
+            legend-style: (stroke: (1pt+gray.lighten(50%)), fill: white),
+            {
+              plot.add(
+                domain: (-5.9, -2.1),
+                x => f(x),
+                style: line-styles,
+                label: [$script(y = (x+1)\/(x^2 - 4))$]
+              )
+              plot.add(
+                domain: (-1.9, 1.9),
+                x => f(x),
+                style: line-styles
+              )
+              plot.add(
+                domain: (2.1, 5.9),
+                x => f(x),
+                style: line-styles
+              )
+              plot.add-vline(
+                -2, 2,
+                label: [$script(x = plus.minus 2)$],
+                style: (stroke: (dash: "dashed", paint: gray))
+              )
+            })
+          })
+        ]
+    ])
+
+  + $g(x) = display((x^2 - 1)/(x^2 + x - 6))$
+    #solution([
+      - Pontos de indeterminação: os candidatos são os valores de $x$ para os quais o denominador igual a zero:
+      $
+        x^2 + x - 6 = 0 &=> x = (-1 plus.minus sqrt(1^2 - 4 dot 1 dot (-6)))/2\
+        &=> x = (-1 plus.minus sqrt(25))/2\
+        &=> x = (-1 plus.minus 5)/2 => 
+        cases(
+          x = display((-1 - 5)/2) = -3,
+          x = display((-1 + 5)/2) = +2,
+        )
+      $
+      - Para cada candidato, verificar os limites laterais com atenção à análise de sinais:
+        - $x -> -3^-$
+        $
+          lim_(x -> -3^-) (x^2 - 1)/(x^2 + x - 6) = overbrace(display(lim_(x -> -3^-) (x^2 - 1)), +8)/underbrace(display(lim_(x -> -3^-) (x^2 + x - 6)), 0^+) = + infinity
+        $
+
+        - $x -> -3^+$
+        $
+          lim_(x -> -3^+) (x^2 - 1)/(x^2 + x - 6) = overbrace(display(lim_(x -> -3^+) (x^2 - 1)), +8)/underbrace(display(lim_(x -> -3^+) (x^2 + x - 6)), 0^-) = - infinity
+        $
+
+        - $x -> +2^-$
+        $
+          lim_(x -> +2^-) (x^2 - 1)/(x^2 + x - 6) = overbrace(display(lim_(x -> +2^-) (x^2 - 1)), +3)/underbrace(display(lim_(x -> +2^-) (x^2 + x - 6)), 0^-) = - infinity
+        $
+
+        - $x -> +2^+$
+        $
+          lim_(x -> +2^+) (x^2 - 1)/(x^2 + x - 6) = overbrace(display(lim_(x -> +2^+) (x^2 - 1)), +3)/underbrace(display(lim_(x -> +2^+) (x^2 + x - 6)), 0^+) = + infinity
+        $
+
+        Portanto, as retas $x = -3$ e $x = 2$ são assíntotas verticais da função.
+
+        #figure()[
+          #cetz.canvas({
+            import cetz.draw: *
+            import cetz-plot: *
+
+            let g(x) = (calc.pow(x, 2) - 1)/(calc.pow(x, 2) + x - 6)
+            plot.plot(..opts, 
+            x-tick-step: none, y-tick-step: none,
+            x-grid: none, 
+            y-min: -8, y-max: 8, 
+            legend: (-3.25, 5.25),
+            legend-style: (stroke: (1pt+gray.lighten(50%)), fill: white),
+            {
+              plot.add(
+                domain: (-6, -3.1),
+                x => g(x),
+                style: line-styles,
+                label: [$script(y = (x^2-1)\/(x^2 + x - 6))$]
+              )
+              plot.add(
+                domain: (-2.9, 1.97),
+                x => g(x),
+                style: line-styles
+              )
+              plot.add(
+                domain: (2.03, 5.9),
+                x => g(x),
+                style: line-styles
+              )
+              plot.add-vline(
+                -3,
+                label: [$script(x = -3)$],
+                style: (stroke: (dash: "dashed", paint: gray))
+              )
+              plot.add-vline(
+                +2,
+                label: [$script(x = +2)$],
+                style: (stroke: (dash: "dotted", paint: gray))
+              )
+            })
+          })
+        ]
+
+    ])
+
+  + $h(x) = display(1/sqrt(4 - x^2))$
+    #solution([
+      - Pontos de indeterminação: os candidatos são os valores de $x$ para os quais o denominador igual a zero:
+      $
+        4 - x^2= 0 => x^2 = 4 => x = plus.minus 2
+      $
+      - Condições de definição da função:
+      $
+        4 - x^2 > 0 => x^2 < 4 => -2 < x < +2
+      $
+      - Para cada candidato, verificar os limites laterais com atenção à análise de sinais, considerando a condição de existência acima.
+        - $x -> -2^+$
+        $
+          lim_(x -> -2^+) 1/sqrt(4 - x^2) = 1/underbrace(display(lim_(x -> -2^+) sqrt(4 - x^2)), 0^+) = + infinity
+        $
+
+        - $x -> +2^-$
+        $
+          lim_(x -> +2^-) 1/sqrt(4 - x^2) = 1/underbrace(display(lim_(x -> +2^-) sqrt(4 - x^2)), 0^+) = + infinity
+        $
+
+        Portanto, as retas $x = -2$ e $x = 2$ são assíntotas verticais da função.
+
+        #figure()[
+          #cetz.canvas({
+            import cetz.draw: *
+            import cetz-plot: *
+
+            plot.plot(..opts, 
+            x-min: -2.5, x-max: 2.5, 
+            y-min: -0.5, y-max: 4,
+            x-tick-step: none, y-tick-step: none,
+            legend: (2.7, 5.25),
+            legend-style: (stroke: (1pt+gray.lighten(50%)), fill: white),
+            {
+              plot.add(
+                samples: 100,
+                domain: (-1.98, 1.98),
+                x => 1/calc.sqrt(4 - calc.pow(x, 2)),
+                label: [$script(y = 1\/sqrt(4 - x^2))$],
+                style: line-styles
+              )
+              plot.add-vline(
+                -2, 2,
+                style: (stroke: (dash: "dashed", paint: gray)),
+                label: [$script(x = plus.minus 2)$]
+              )
+            })
+          })
+        ]
+    ])
+
