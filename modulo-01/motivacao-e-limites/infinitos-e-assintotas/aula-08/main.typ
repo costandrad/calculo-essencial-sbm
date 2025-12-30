@@ -77,7 +77,7 @@
                 )
                 plot.add-vline(
                   2,
-                  style: (stroke: (dash: "dashed", paint: gray)),
+                  style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.2pt)),
                   label: [$script(x = 2)$]
                 )
               })
@@ -121,7 +121,7 @@
                 )
                 plot.add-vline(
                   0,
-                  style: (stroke: (dash: "dashed", paint: gray)),
+                  style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.2pt)),
                   label: [$script(x = 0)$]
                 )
               })
@@ -172,7 +172,7 @@
                 )
                 plot.add-vline(
                   3, 
-                  style: (stroke: (dash: "dashed", paint: gray)),
+                  style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.2pt)),
                   label: [$script(x = 3)$]
                 )
               })
@@ -224,7 +224,7 @@
                 )
                 plot.add-vline(
                   1, 
-                  style: (stroke: (dash: "dashed", paint: gray)),
+                  style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.2pt)),
                   label: [$script(x = 1)$]
                 )
               })
@@ -265,7 +265,7 @@
                 )
                 plot.add-vline(
                   0, 
-                  style: (stroke: (dash: "dashed", paint: gray)),
+                  style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.2pt)),
                   label: [$script(x = 0)$]
                 )
               })
@@ -311,7 +311,7 @@
                 plot.add-vline(
                   -calc.pi/2, calc.pi/2,
                   label: [$script(x = plus.minus pi\/2)$],
-                  style: (stroke: (dash: "dashed", paint: gray))
+                  style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.2pt)),
                 )
               })
             })
@@ -385,7 +385,7 @@
               plot.add-vline(
                 -2, 2,
                 label: [$script(x = plus.minus 2)$],
-                style: (stroke: (dash: "dashed", paint: gray))
+                style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.2pt)),
               )
             })
           })
@@ -459,12 +459,12 @@
               plot.add-vline(
                 -3,
                 label: [$script(x = -3)$],
-                style: (stroke: (dash: "dashed", paint: gray))
+                style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.2pt)),
               )
               plot.add-vline(
                 +2,
                 label: [$script(x = +2)$],
-                style: (stroke: (dash: "dotted", paint: gray))
+                style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.2pt)),
               )
             })
           })
@@ -516,7 +516,7 @@
               )
               plot.add-vline(
                 -2, 2,
-                style: (stroke: (dash: "dashed", paint: gray)),
+                style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.2pt)),
                 label: [$script(x = plus.minus 2)$]
               )
             })
