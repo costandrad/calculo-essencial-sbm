@@ -198,11 +198,11 @@
         #cetz.canvas({
           import cetz.draw: *
 
-          content((0, 0), [$ lim_(x -> #text(red)[$+infinity$]) e^x = #text(blue)[$+infinity$]  ==> lim_(x -> #text(blue)[$+infinity$]) ln x = #text(red)[$+infinity$] $])
+          content((0, 0), [$ lim_(x -> #text(sbm-green)[$+infinity$]) e^x = #text(sbm-blue)[$+infinity$]  ==> lim_(x -> #text(sbm-blue)[$+infinity$]) ln x = #text(sbm-green)[$+infinity$] $])
 
-          line((-.8, -0.1), (-.8, -1), (1, -1), (1, -0.3), stroke: blue, mark: (end: ">>", fill: blue))
+          line((-.8, -0.1), (-.8, -1), (1, -1), (1, -0.3), stroke: sbm-blue, mark: (end: ">>", fill: sbm-blue))
 
-          line((-2.55, -0.3), (-2.55, -1.5), (3, -1.5), (3, -0.1),  stroke: red, mark: (end: ">>", fill: red))
+          line((-2.55, -0.3), (-2.55, -1.5), (3, -1.5), (3, -0.1),  stroke: sbm-green, mark: (end: ">>", fill: sbm-green))
         })
       ]
     ])
@@ -214,11 +214,11 @@
         #cetz.canvas({
           import cetz.draw: *
 
-          content((0, 0), [$ lim_(x -> #text(red)[$+pi\/2$]) tan x = #text(blue)[$+infinity$]  ==> lim_(x -> #text(blue)[$+infinity$]) "arctan" x = #text(red)[$+ pi/2$] $])
+          content((0, 0), [$ lim_(x -> #text(sbm-green)[$+pi\/2$]) tan x = #text(sbm-blue)[$+infinity$]  ==> lim_(x -> #text(sbm-blue)[$+infinity$]) "arctan" x = #text(sbm-green)[$+ pi/2$] $])
 
-          line((-.84, -0.1), (-.84, -1), (1.15, -1), (1.15, -0.4), stroke: blue, mark: (end: ">>", fill: blue))
+          line((-.84, -0.1), (-.84, -1), (1.15, -1), (1.15, -0.4), stroke: sbm-blue, mark: (end: ">>", fill: sbm-blue))
 
-          line((-3.2, -0.5), (-3.2, -1.5), (4, -1.5), (4, -0.4),  stroke: red, mark: (end: ">>", fill: red))
+          line((-3.2, -0.5), (-3.2, -1.5), (4, -1.5), (4, -0.4),  stroke: sbm-green, mark: (end: ">>", fill: sbm-green))
         })
       ]
     ])
@@ -230,15 +230,16 @@
         #cetz.canvas({
           import cetz.draw: *
 
-          content((0, 0), [$ lim_(x -> #text(red)[$0^+$]) "cotg" x = #text(blue)[$+infinity$]  ==> lim_(x -> #text(blue)[$+infinity$]) "arccotg" x = #text(red)[$0$] $])
+          content((0, 0), [$ lim_(x -> #text(sbm-green)[$0^+$]) "cotg" x = #text(sbm-blue)[$+infinity$]  ==> lim_(x -> #text(sbm-blue)[$+infinity$]) "arccotg" x = #text(sbm-green)[$0$] $])
 
-          line((-.75, -0.1), (-.75, -1), (1.2, -1), (1.2, -0.3), stroke: blue, mark: (end: ">>", fill: blue))
+          line((-.75, -0.1), (-.75, -1), (1.2, -1), (1.2, -0.3), stroke: sbm-blue, mark: (end: ">>", fill: sbm-blue))
 
-          line((-3.35, -0.4), (-3.35, -1.5), (3.82, -1.5), (3.82, -0.1),  stroke: red, mark: (end: ">>", fill: red))
+          line((-3.35, -0.4), (-3.35, -1.5), (3.82, -1.5), (3.82, -0.1),  stroke: sbm-green, mark: (end: ">>", fill: sbm-green))
         })
       ]
     ])
 
+  #v(10cm)
 + Determine todas as assíntotas (verticais e horizontais) das funções abaixo:
 
 #rect(
