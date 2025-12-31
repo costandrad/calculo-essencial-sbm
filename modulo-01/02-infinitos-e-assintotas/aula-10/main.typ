@@ -62,23 +62,35 @@
               )
               plot.annotate({
                 line((k * calc.pi/2, 5), (k * calc.pi/2, -5), stroke: (dash: "dashed", paint: sbm-green))
-                line((k * calc.pi/2, .2), (k * calc.pi/2, -.2), name: "tick")
-                
-                if k==1 {
-                  content("tick.end", [#text(size: 10pt)[$display(pi/2)$]], anchor: "south", padding: "0.4", frame: "rect", stroke: none, fill: white)
-                } else if k == -1 {
-                  content("tick.end", [#text(size: 10pt)[$display(-pi/2)$]], anchor: "south", padding: "0.4", frame: "rect", stroke: none, fill: white)
-                } else if calc.abs(k) > 0 {
-                  content("tick.end", [#text(size: 10pt)[$#k display(pi/2)$]], anchor: "south", padding: "0.4", frame: "rect", stroke: none, fill: white)
-                }
-                
               })
+
+            }
+            for j in range(-5, 6).filter(i => i != 0) {
+                let k =  j * calc.pi/2
+                plot.annotate({
+                  line((k, 0.2), (k, -0.2))
+                  if calc.rem(j, 2)==0 {
+                    content((k, -0.3), [$script(#j""pi)$], anchor: "south", padding: "0.1", frame: "rect", stroke: none, fill: white)
+                  } else {
+                    if j == 1 {
+                      content((k, -0.3), [$pi/2$], anchor: "south", padding: "0.25", frame: "rect", stroke: none, fill: white)
+                    } else if j == -1 {
+                      content((k -0.25, -0.3), [$- (pi)/2$], anchor: "south", padding: "0.25", frame: "rect", stroke: none, fill: white)
+                    } else if j > 0 {
+                      content((k, -0.3), [$(#j""pi)/2$], anchor: "south", padding: "0.25", frame: "rect", stroke: none, fill: white)
+                    } else {
+                      content((k -0.25, -0.3), [$-(#calc.abs(j)""pi)/2$], anchor: "south", padding: "0.25", frame: "rect", stroke: none, fill: white)
+                    }
+                  }
+                })
             }
           }
         )
       })
     ]
   ])
+
+
 
 + Calcule os limites abaixo:
   #set enum(numbering: "(a)")
@@ -213,7 +225,7 @@
 
   + $display(lim_(x -> +infinity) "arccotg" x)$
     #solution([
-      Seja $f(x) = "cotg" x$ e a inversa $f^(-1)(x) = "arccotg" x$. Sabemos que:
+      Seja $f(x) = "cotg" x$ ($DD = {x in RR | 0 < x < pi}$ e $II = RR$) e a inversa $f^(-1)(x) = "arccotg" x$ ($DD = RR$ e $II = {x in RR | 0 < x < pi}$). Sabemos que:
       #figure()[
         #cetz.canvas({
           import cetz.draw: *
@@ -228,10 +240,188 @@
     ])
 
 + Determine todas as assíntotas (verticais e horizontais) das funções abaixo:
+
+#rect(
+  fill: sbm-blue.transparentize(80%),
+  radius: 5pt,
+  inset: 20pt,
+
+  )[
+
+
+    #align(center)[*Critérios para Determinação de\ Assíntotas Verticais e Horizontais*]
+
+    #v(0.5cm)
+
+      #set enum(numbering: "i.")
+      + *Assíntotas Verticais*
+        - Identificar candidatos, isto é, valores de $x$ para os quais a função não está definida. Por exemplo:
+          - o denominador se anula;
+          - o argumento de logaritmos é nulo ou negativo;
+          - o radicando de raízes de índice par é negativo.
+        - Para cada candidato $x = a$, determinar os limites laterais:
+          - $display(lim_(x -> a^-) f(x))$
+          - $display(lim_(x -> a^+) f(x))$
+        - Verificar *divergência*: se pelo menos um dos limites laterais for $+infinity$ ou $-infinity$, então a reta $x = a$ é uma assíntota vertical.
+
+      + *Assíntotas Horizontais*
+        - Determinar os limites no infinito:
+          - $display(lim_(x -> +infinity) f(x))$
+          - $display(lim_(x -> -infinity) f(x))$
+        - Verificar *convergência*: se algum dos limites existir for um número real finito $L$, então a reta $y = L$ é uma assíntota horizontal.
+]
+
   #set enum(numbering: "(a)")
   + $f(x) = display(2e^x)/(e^x + 1)$
-    #solution([])
+    #solution([
+      #set enum(numbering: "i.")
+      + Assíntotas Verticais: Não existem, pois a função $f$ está definida para todo $x in RR$
+      + Assíntotas Horizontais:
+        - Limites no infinito:
+        
+          $
+            lim_(x -> + infinity) f(x) &= lim_(x -> + infinity) (2e^x)/(e^x + 1) = lim_(x -> + infinity) (2 cancel(e^x))/(cancel(e^x)(1 + display(1/(e^x)))) = lim_(x -> +infinity) 2/(1 + display(1/(e^x)))\
+            &= 2/(1 + display(lim_(x -> + infinity) 1/e^x)) = 2/(1 + 0) = 2
+          $
+
+          $
+            lim_(x -> - infinity) f(x) &= lim_(x -> - infinity) (2e^x)/(e^x + 1) = lim_(x -> - infinity) (2 cancel(e^x))/(cancel(e^x)(1 + display(1/(e^x)))) = lim_(x -> -infinity) 2/(1 + display(1/(e^x))) = lim_(x -> -infinity) 2/(1 + e^(-x))\
+            &= 2/(1 + display(lim_(x -> - infinity) e^(-x))) = 0
+          $
+          pois $display(lim_(x -> -infinity) e^(-x)) = +infinity$.
+
+      Portanto, a função $f$ não possui assíntotas verticais, mas possui os seguintes assíntotas horizontais:
+        - $y = 2$ quando $x -> +infinity$, e
+        - $y = 0$ quando $x -> -infinity$,
+      como ilustra o gráfico abaixo:
+
+      #figure()[
+        #cetz.canvas({
+          import cetz.draw: *
+          import cetz-plot: *
+
+          plot.plot(
+            size: (10, 5),
+            axis-style: "school-book", 
+            x-tick-step: 2, y-tick-step: 1, 
+            y-min: 0, y-max: 2.,
+            
+            legend: (0, 4.9),
+            legend-style: (stroke: none, fill: sbm-blue.mix((white, 700%))),
+
+            {
+              plot.add(
+                samples: 100, 
+                domain: (-6, 6), 
+                x => 2*calc.exp(x)/(calc.exp(x) + 1),
+                style: line-styles,
+                label: [$script(f(x) = 2e^x\/(e^x + 1))$]
+              )
+              plot.add-hline(
+                0, 
+                label: [$script(y = 0)$],
+                style: (stroke: (dash: "dotted", paint: sbm-green, thickness: 1.5pt))
+              )
+              plot.add-hline(
+                2, 
+                label: [$script(y = 2)$],
+                style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.5pt))
+              )
+            }
+          )
+        })
+      ]
+
+
+
+
+    ])
 
   + $g(x) = display((x^2 - 1)/(x^3 + x))$
-    #solution([])
+    #solution([
+      #set enum(numbering: "i.")
+      + Assíntotas Verticais: 
+        - Pontos em que o denominador se anula:
+          $
+            x^3 + x = 0 => x (x^2 + 1) = 0 => x = 0
+          $
+        - Determinar os limites laterais para o candidato $x = 0$
+          - Caso $x -> 0^-$
+            $
+              lim_(x -> 0^-) g(x) = lim_(x -> 0^-) (x^2 - 1)/(x^3 + x) 
+            $
+            Observemos que, quando $x -> 0^-$, o numerador tende a um valor netativo $-1$. Por sua vez, como estamos tomando $x < 0$,  o denominador $x^3 - x$ tende a zero, mas por valores também negativos. Assim, ao dividir o numerador negativo constante por valores negativos cada vez menores, o resultado é positivo e cresce indefinidamente. Portanto:
+            $
+              lim_(x -> 0^-) g(x) = lim_(x -> 0^-) (x^2 - 1)/(x^3 + x) = + infinity
+            $
+
+          - Caso $x -> 0^+$
+            $
+              lim_(x -> 0^+) g(x) = lim_(x -> 0^+) (x^2 - 1)/(x^3 + x) 
+            $
+            Observemos que, quando $x -> 0^+$, o numerador tende a um valor netativo $-1$. Por sua vez, como estamos tomando $x > 0$,  o denominador $x^3 - x$ tende a zero, mas por valores positivos. Assim, ao dividir o numerador negativo constante por valores positivos cada vez menores, o resultado é negativo e cresce indefinidamente. Portanto:
+            $
+              lim_(x -> 0^+) g(x) = lim_(x -> 0^+) (x^2 - 1)/(x^3 + x) = - infinity
+            $
+          Logo, como os dois limites laterais divergem, a reta $x = 0$ é uma assíntota vertical.
+
+
+
+      + Assíntotas Horizontais:
+        - Limites no infinito:
+          - Caso $x -> + infinity$:
+            $
+              lim_(x -> + infinity) g(x) &= lim_(x -> + infinity) (x^2 - 1)/(x^3 + x) = lim_(x -> + infinity) (cancel(x^3)(1/x - 1/x^2))/(cancel(x^3)(1 + 1/x^2)) = lim_(x -> + infinity) (1/x - 1/x^2)/(1 + 1/x^2)\
+              &= lim_(x -> + infinity) ((1/x) (1 - 1/x))/(1 + 1/x^2) = 0^+
+            $
+            Note que, auando $x -> + infinity$, os termos $1 - 1/x$ e $1 + 1/x^2$ tendem ao valor constante positivo igual a $1$. Por sua vez, $1/x$ tende a zero por valores positivos. Logo, o limite tende a $0^+$.
+
+          - Caso $x -> - infinity$:
+            $
+              lim_(x -> - infinity) g(x) &= lim_(x -> - infinity) (x^2 - 1)/(x^3 + x) = lim_(x -> - infinity) (cancel(x^3)(1/x - 1/x^2))/(cancel(x^3)(1 + 1/x^2)) = lim_(x -> - infinity) (1/x - 1/x^2)/(1 + 1/x^2)\
+              &= lim_(x -> - infinity) ((1/x) (1 - 1/x))/(1 + 1/x^2) = 0^-
+            $
+            Note que, auando $x -> - infinity$, os termos $1 - 1/x$ e $1 + 1/x^2$ tendem ao valor constante positivo igual a $1$. Por sua vez, $1/x$ tende a zero por valores negaticvos. Logo, o limite tende a $0^-$.
+
+        Portanto, a função $g$ possui um assíntota vertical na reta $x = 0$ e assíntotas horizontais na reta $y = 0$, como ilustra o gráfico abaixo:
+
+      #figure()[
+        #cetz.canvas({
+          import cetz.draw: *
+          import cetz-plot: *
+
+          plot.plot(
+            size: (10, 8),
+            axis-style: "school-book", 
+            x-tick-step: 2, y-tick-step: 2, 
+            y-min: -4, y-max: 4.,
+            
+            legend: (6.8, 8),
+            legend-style: (stroke: none, fill: sbm-blue.mix((white, 700%))),
+
+            {
+              plot.add(
+                samples: 500, 
+                domain: (-5, 5), 
+                x => (calc.pow(x, 2) - 1)/(calc.pow(x, 3) + x),
+                style: line-styles,
+                label: [$script(g(x) = (x^2 - 1)\/(x^3 + x))$]
+              )
+              plot.add-vline(
+                0, 
+                label: [$script(x = 0)$],
+                style: (stroke: (dash: "dashed", paint: sbm-green, thickness: 1.5pt))
+              )
+              plot.add-hline(
+                0, 
+                label: [$script(y = 0)$],
+                style: (stroke: (dash: "dotted", paint: sbm-green, thickness: 1.5pt))
+              )
+              
+            }
+          )
+        })
+      ]
+
+    ])
   
