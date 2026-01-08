@@ -220,6 +220,53 @@
       ]
     ])
 
++ Defina matematicamente o que significa:
+  #set enum(numbering: "(a)")
+  + Uma função ser contínua à direita em $x = a$.
+
+    #solution([
+      Dizemos que uma função $f$ é contínua à direita em $x = a$ se satizfaz simultaneamente as seguintes condições:
+
+        #set enum(numbering: "i.")
+        + $f(a)$ está definida;
+        + existe o limite à direita de $f(x)$ em $a$, isto é,
+          $
+            lim_(x -> a^+) f(a) " existe;"
+          $
+        + o valor do limite à direita coincide com o valor da função em $a$:
+          $
+            lim_(x -> a^+) f(a) = f(a)
+          $
+        De forma compacta:
+
+        $
+          f " é contínua à direita em " a <==> lim_(x -> a^+) f(a) = f(a).
+        $
+    ])
+
+  + Uma função ser contínua à esquerda em $x = a$.
+
+    #solution([
+      Dizemos que uma função $f$ é contínua à esquerda em $x = a$ se satizfaz simultaneamente as seguintes condições:
+
+        #set enum(numbering: "i.")
+        + $f(a)$ está definida;
+        + existe o limite à esquerda de $f(x)$ em $a$, isto é,
+          $
+            lim_(x -> a^-) f(a) " existe;"
+          $
+        + o valor do limite à esquerda coincide com o valor da função em $a$:
+          $
+            lim_(x -> a^-) f(a) = f(a)
+          $
+        De forma compacta:
+
+        $
+          f " é contínua à esquerda em " a <==> lim_(x -> a^-) f(a) = f(a).
+        $
+    ])
+
+
 
 
 
