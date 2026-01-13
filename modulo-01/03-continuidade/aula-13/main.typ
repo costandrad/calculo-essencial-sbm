@@ -176,6 +176,37 @@
     $
       display(lim_(x -> 1^-)) f(x) = display(lim_(x -> 1^+)) f(x) = f(1) = 1
     $
-    Logo, $f$ é contínua em toda a reta real $RR$.
+    Logo, $f$ é contínua em toda a reta real $RR$, como se observa no gráfico seguinte:
+
+    #figure()[
+      #cetz.canvas({
+        import cetz.draw: *
+        import cetz-plot: *
+
+        plot.plot(
+          ..opts,
+          {
+            plot.add(
+              domain: (-1, 1),
+              x => calc.pow(x, 2),
+              style: line-styles
+            )
+            plot.add(
+              domain: (1, 3),
+              x => 2 * x - 1,
+              style: line-styles
+            )
+            plot.annotate({
+              line((1, 0), (1, 1), (0, 1), stroke: (dash: "dashed", paint: sbm-green))
+            })
+            plot.add(
+              ((1, 1),),
+              mark: "o",
+              mark-style: mark-styles(sbm-blue)
+            )
+          }
+        )
+      })
+    ]
 
   ])
