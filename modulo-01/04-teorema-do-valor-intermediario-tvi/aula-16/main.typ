@@ -232,3 +232,38 @@
   ])
 
 + Em qualquer momento do dia, prove que existem dois pontos antípodas na Terra (pontos diametralmente opotos) que possuem a mesma temperatura. Use o TVI considerando a função $f(theta) = T(theta) - T(theta + pi)$, onde $T(theta)$ é a temperatura no ponto de longitude $theta$.
+
+  #solution([
+    Consideremos a Terra como uma esfera e parametrizemos pontos sobre um círculo máximo (por exemplo, o equador) pela longitude $theta in [0, 2pi)$. Para cada ponto de longitude $theta$, o ponto antípoda corresponde à longitude $theta + pi$.
+
+    Seja $T(theta)$ a temperatura no ponto de longitude $theta$. Então, a diferença de temperatura entre os pontos antípodas é dada pela função:
+    $
+      f(theta) = T(theta) - T(theta + pi).
+    $
+    É razoável supor que a temperatura na Terra varia de forma contínua ao lonto de qualquer círculo máximo, Assim, a podemos supor $(theta)$ é contínua. Além disso,  $f$ também é contúnua pois é dada pela diferença de funções contínuas.
+
+    Pela geometria do problema, a função $T$ é periódica de período $2pi$, ou seja, $T(theta) = T(theta + 2pi)$. Então,
+    $
+      f(theta + pi) = T(theta + pi) - T(theta + pi + pi) = T(theta + pi) - T(theta + 2pi)\
+      f(theta + pi) = T(theta + pi) - T(theta)\
+      f(theta + pi) = - f(theta)
+    $
+
+
+    Consideremos o intervalo fechado $[0, pi]$. Temos duas possibilidades:
+    - *Caso 1*: $f(0) = 0$. Então, 
+    
+      $
+        f(0) = 0 => T(0) - T(0 + pi) = 0 => T(0) = T(pi)
+      $
+      Portanto, nesse caso, os pontos antípodas de longitude $0$ e $pi$ possuem a mesma temperatura.
+    - *Caso 2*: $f(0) != 0$. Então, pela propriedade $f(theta + pi) = - f(theta)$, temos:
+      $
+        f(0 + pi) = -f(0) => f(pi) = -f(0) 
+      $
+      Logo, $f(0)$ e $f(pi)$ possuem sinais opostos. Como $f$ é contínua no intervalo $[0, pi]$, pelo Teorema do Valor Intermediário, existe $c in (0, pi)$ tal que $f(c) = 0$. 
+
+      Isso significa que $T(c) - T(c + pi) = 0$, ou seja, $T(c) = T(c + pi)$.
+
+    Finalmente, em qualquer momento do dia, existem dois pontos antípodas na Terra que possuem exatamente a mesma temeratura. 
+  ])
