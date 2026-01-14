@@ -16,7 +16,7 @@
 )
 
 #let opts = (
-  size: (5, 5), axis-style: "school-book", 
+  size: (7, 7), axis-style: "school-book", 
 
   x-tick-step: 1, y-tick-step: 1,
   x-grid: true, y-grid: "both",
@@ -78,7 +78,7 @@
       }
     }
 
-    A tabela abaixo mostra a aplicação de $f$ para diversos valores de $x$. Note que para $x = -2$, $f(x) < 0$, enquanto que para $x = -1$, $f(x) > 0$.  Consideremoos o ontervalo fechado $[-2, -1]$. Como $f$ é uma função polinomial, é contínua nesse intervalo. Portanto, pelo Teorema do Valor Intermediário, existe um valor $c in (-2, -1)$ tal que $f(c) = 0$. Esse número $c$ é uma raiz de $f$.
+    A tabela abaixo mostra a aplicação de $f$ para diversos valores de $x$. Note que para $x = -2$, $f(x) < 0$, enquanto que para $x = -1$, $f(x) > 0$.  
 
     #set table(
       stroke: (x, y) => {
@@ -108,4 +108,127 @@
         ..row.flatten().map(x => [$#x$])
       )
     ]
+
+    Consideremoos o intervalo fechado $[-2, -1]$. Como $f$ é uma função polinomial, é contínua nesse intervalo, pois é contínua em toda a reta real. Portanto, visto que $f$ muda de sinal nesse intervalo, pelo Teorema do Valor Intermediário, existe um valor $c in (-2, -1)$ tal que $f(c) = 0$. Esse número $c$ é uma raiz de $f$.
   ])
+
++ Mostre que a equação $e^x = 3 - x$ possui pelo menos uma solução no intervalo $[0, 2]$.
+  #solution([
+    Consideremos a função $ f(x) = e^x + x - 3. $
+    Note que as raízes de $f$ são soluções da equação $e^x = 3 - x$, pois dado $x^*$ raiz de $f$, temos:
+    $
+      f(x^*) = 0 => e^x^* + x^* - 3 = 0 => e^x^* = 3 - x^*. 
+    $
+
+    Então, dado o intervalo fechado $[0, 2]$, temos:
+
+    $
+      f(0) &= e^0 + 0 - 3 = 1 - 3 = -2\
+      f(2)&= e^2 + 2 - 3 = e^2 - 1 approx #fmt(calc.pow(calc.e, 2) - 1, digits: 2)
+    $
+    Note que $f$ é contínua em toda a reta real, visto que é dada pela soma de uma função exponencial e uma função polinomial, ambas contínuas para todo $RR$, Então, pelo Teorema do Valor Intermediário sabemos que $f$ assume todos os valores no intervalo aberto $(0, 2)$.
+    Em especial, dados que $f(0) < 0$ enquanto $f(2) > 0$, ou seja, $f$ muda de sinal nesse intervalo, existe $x^* in (0, 2)$ tal que $f(x^*) = 0$. Portanto, $f$ possui uma raiz em $[0, 2]$, o que significa dizer que a equação $e^x = 3 - x$ tem solução no referido intervalo. 
+
+    #let f(x) = [
+      #return calc.exp(x) + x - 3 
+    ]
+
+    #let X = (0, 2)
+    
+  
+    #for i in range(10) [
+      #let n = X.len()
+      #let x1 = X.at(n - 2)
+      #let x2 = X.at(n - 1)
+
+      #if f(x2) - f(x1) == 0 {
+        break
+      }
+
+      #let x = x2 - f(x2) * (x2 - x1)/(f(x2) - f(x1))
+      #X.push(x)
+    ]
+
+    #let x = X.last()
+
+    #grid(
+      columns: 2,
+      gutter: 50pt,
+      align: center,
+      [
+        #figure()[
+          #cetz.canvas({
+            import cetz.draw: *
+            import cetz-plot: *
+
+            plot.plot(
+              ..opts, 
+              y-min: -5, y-max: 15,
+              x-tick-step: 2, y-tick-step: 5, 
+              legend: (0, 6.6),
+              legend-style: (stroke: 0.5pt+gray, fill: white),
+              {
+                plot.add(
+                  domain: (-4, 4),
+                  x => calc.exp(x),
+                  label: [#text(size: 10pt)[$g(x) = e^x$]],
+                  style: (stroke: 1.5pt+sbm-blue)
+                )
+                plot.add(
+                  domain: (-4, 4),
+                  x => 3 - x,
+                  label: [#text(size: 10pt)[$h(x) = 3 - x$]],
+                  style: (stroke: 1.5pt+sbm-green)
+                )
+
+                plot.annotate({
+                  line((x, 0), (x, 3 - x), (0, 3 - x), stroke: (dash: "dashed", paint: gray ))
+                  content((x, 0), [$x^*$], anchor: "south", padding: 1)
+                  content((0, 3 - x), [$g(x^*) = h(x^*)$], anchor: "east", padding: 0.3)
+                })
+                plot.add(
+                  ((x, 3 - x),),
+                  mark: "o",
+                  mark-style: (stroke: none, fill: darkblue)
+                )
+              }
+            )
+          })
+        ]
+      ],
+      [
+        #figure()[
+          #cetz.canvas({
+            import cetz.draw: *
+            import cetz-plot: *
+
+            plot.plot(
+              ..opts,
+              y-min: -5, y-max: 15,
+              x-tick-step: 2, y-tick-step: 5, 
+              legend: (0, 6.5),
+              legend-style: (stroke: 0.5pt+gray, fill: white),
+              {
+                plot.add(
+                  domain: (-4, 4),
+                  x => calc.exp(x) + x - 3,
+                  label: [#text(size: 10pt)[$f(x) = e^x + x - 3$]],
+                  style: (stroke: 1.5pt+sbm-blue)
+                )
+                plot.annotate({
+                  content((x, 0), [$x^*$], anchor: "south", padding: 1)
+                })
+                plot.add(
+                  ((x, 0),),
+                  mark: "o",
+                  mark-style: (stroke: none, fill: darkblue)
+                )
+              }
+            )
+          })
+        ]
+      ]
+    )
+  ])
+
++ Em qualquer momento do dia, prove que existem dois pontos antípodas na Terra (pontos diametralmente opotos) que possuem a mesma temperatura. Use o TVI considerando a função $f(theta) = T(theta) - T(theta + pi)$, onde $T(theta)$ é a temperatura no ponto de longitude $theta$.
