@@ -35,7 +35,7 @@
       import cetz-plot: *
 
       plot.plot(
-        size: (10, 8), axis-style: "school-book",
+        size: (10, 6), axis-style: "school-book",
         x-min: -4, x-max: 6,
         y-min: -5, y-max: 1, 
         x-tick-step: 1, y-tick-step: 1,
@@ -96,7 +96,8 @@
   Determine o ponto $(a, f(a))$ onde a rampa dever ser tangente ao half-pipe para que chehe exatamente na plataforma de lançamento.
 
   #set enum(numbering: "(a)")
-  + Encontre uma expressão para o coeficiente angular da reta secante que passa pelos pontos $(a, f(a))$ e $(a + h, f(a+h))$ do falf-pipe.
+  \ \ \ \ \ \ \
+  + Encontre uma expressão para o coeficiente angular da reta secante que passa pelos pontos $(a, f(a))$ e $(a + h, f(a+h))$ do half-pipe.
     #solution([
       $
         m_"sec" &= (Delta y)/(Delta x) = (f(a + h) - f(a))/((a + h) - a)\
