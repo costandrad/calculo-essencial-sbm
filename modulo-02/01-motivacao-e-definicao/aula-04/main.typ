@@ -172,3 +172,35 @@
       É um teorema demonstrável que toda função deriável em um ponto é contínua nesse ponto, mas nem toda função contínua é derivável.
     ])
 
+  
++ Observe os gráficos das funções abaixo e analise a derivabilidade non pontos indicados.
+
+  #figure(
+    image("assets/images/prob-03.png")
+  )
+
+  Para cada gráfico, determine se a função é derivável no ponto $x = 0$ indicado. Justifique sua resposta baseando-se na suavidade ou presença de "bicos" no gráfico.
+
+  #set table(
+    stroke: 0.25pt,
+    fill: (x, y) => (
+      if y == 0 {
+        color.mix((black, 80%), white)
+      } else if calc.rem(y, 2) == 0 {
+        color.mix((black, 20%), white)
+      }
+    )
+  )
+
+  #show table.cell.where(y: 0): set text(weight: "bold", fill: white)
+
+  #align(center, table(
+    columns: 3,
+    table.header([Gráfico], [Derivável em $x = 0$?], [Justificativa]),
+    [A], [Sim], [Função é _suave_ em $x = 0$],
+    [B], [Não], [Há um _bico_ em $x = 0$],
+    [C], [Não], [Há um _bico_ em $x = 0$],
+    [D], [Não], [Há um _bico_ em $x = 0$],
+    [E], [Sim], [Função é _suave_ em $x = 0$],
+  ))
+
